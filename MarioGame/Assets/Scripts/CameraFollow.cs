@@ -20,7 +20,7 @@ namespace Assets.Scripts
         void Start()
         {
             //Offset = transform.position - Player.transform.position;
-            target = GameObject.Find("Player").transform;
+            target = GameObject.Find("Player").transform; 
         }
 
         // Update is called once per frame
