@@ -1,7 +1,7 @@
-﻿using UnityEngine;
-
-namespace Assets.Scripts
+﻿namespace Assets.Scripts
 {
+    using UnityEngine;
+
     public class Destroy : MonoBehaviour
     {
         // Use this for initialization
@@ -16,8 +16,6 @@ namespace Assets.Scripts
 
         void OnCollisionEnter(Collision col)
         {
-            Debug.Log("am intrat");
-
             if (col.gameObject.name == "Player")
             {
                 Destroy(gameObject);
