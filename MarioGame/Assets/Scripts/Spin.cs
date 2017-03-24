@@ -1,8 +1,8 @@
-﻿using UnityEngine;
-
-namespace Assets.Scripts
+﻿namespace Assets.Scripts
 {
-    public class CoinSpin : MonoBehaviour
+    using UnityEngine;
+
+    public class Spin : MonoBehaviour
     {
         public int Speed = 1;
 

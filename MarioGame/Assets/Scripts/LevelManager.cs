@@ -1,15 +1,18 @@
-﻿using UnityEngine;
-using UnityEngine.SceneManagement;
-
-public class LevelManager : MonoBehaviour
+﻿namespace Assets.Scripts
 {
-    public void LoadLevel(string level)
-    {
-        SceneManager.LoadScene(level);
-    }
+    using UnityEngine;
+    using UnityEngine.SceneManagement;
 
-    public void Exit()
+    public class LevelManager : MonoBehaviour
     {
-        Application.Quit();
+        public void LoadLevel(string level)
+        {
+            SceneManager.LoadScene(level);
+        }
+
+        public void Exit()
+        {
+            Application.Quit();
+        }
     }
 }
