@@ -6,9 +6,14 @@
 
     public class SelfDestroyBrick : MonoBehaviour
     {
+        private Rigidbody body;
+
+        private BoxCollider collider;
         // Use this for initialization
         void Start()
         {
+            body = GetComponent<Rigidbody>();
+            collider = GetComponent<BoxCollider>();
         }
 
         // Update is called once per frame
@@ -25,6 +30,10 @@
                     Debug.DrawRay(contact.point, contact.normal * 10, Color.white);
                     if (contact.normal.y == 1)
                     {
+                        body.constraints = RigidbodyConstraints.None;
+                        body.AddForce(0,3,3,ForceMode.Impulse);
+                        body.AddTorque(0, 3, 3, ForceMode.Impulse);
+                        collider.enabled = false;
                         Invoke("DestroyMe", 2);
                     }
                 }

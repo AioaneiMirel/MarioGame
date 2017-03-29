@@ -12,6 +12,8 @@
 
         Rigidbody rigidBody;
 
+        bool onJumpPlatform = false;
+
         void Start()
         {
             rigidBody = GetComponent<Rigidbody>();
@@ -27,11 +29,25 @@
         void Jump()
         {
             var jump = new Vector3(0.0f, 2.0f, 0.0f);
-            if (Input.GetKeyDown(KeyCode.Space) && IsOnGround())
+            if (Input.GetKeyDown(KeyCode.Space))
             {
-                rigidBody.AddForce(jump * JumpForce, ForceMode.Impulse);
-                PlayClip("Jump");
+                if (IsOnGround())
+                {
+                    rigidBody.AddForce(jump * JumpForce, ForceMode.Impulse);
+                    PlayClip("Jump");
+                }
+                if (onJumpPlatform)
+                {
+                    rigidBody.AddForce(jump * JumpForce * 0.5f, ForceMode.Impulse);
+                    PlayClip("Jump");
+                    onJumpPlatform = false;
+                }
             }
+        }
+
+        bool IsPlatformHit()
+        {
+            return Physics.Raycast(transform.position, Vector3.down, GetComponent<Collider>().bounds.extents.y + 0.1f);
         }
 
         bool HeadHit()
@@ -59,7 +75,6 @@
 
             if (HeadHit())
             {
-
                 if (col.gameObject.tag == "WallBrickStandard")
                 {
                     PlayClip("Click");
@@ -70,8 +85,18 @@
                     PlayClip("Click"); //TO DO Find another sound to play when a brick is destroyed
                 }
             }
+
+            if (IsPlatformHit() && col.gameObject.tag == "JumpPlatform")
+            {
+                onJumpPlatform = true;
+            }
         }
 
+        void OnCollisionExit(Collision collisionInfo)
+        {
+            onJumpPlatform = false;
+        }
+        
         void PlayClip(string clipName)
         {
             switch (clipName)
