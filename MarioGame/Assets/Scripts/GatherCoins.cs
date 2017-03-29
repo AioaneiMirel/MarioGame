@@ -2,7 +2,7 @@
 {
     using UnityEngine;
 
-    public class Destroy : MonoBehaviour
+    public class GatherCoins : MonoBehaviour
     {
         // Use this for initialization
         void Start()

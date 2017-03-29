@@ -1,8 +1,5 @@
 ﻿namespace Assets.Scripts
 {
-    using System.Collections;
-    using System.Threading;
-
     using UnityEngine;
 
     public class LevelEnd : MonoBehaviour
@@ -14,7 +11,7 @@
         // Use this for initialization
         void Start()
         {
-            audioSource= GetComponent<AudioSource>();
+            audioSource = GetComponent<AudioSource>();
         }
 
         // Update is called once per frame
@@ -28,7 +25,7 @@
             {
                 audioSource.Play();
 
-                Invoke("Lose",audioSource.clip.length);      //wait clip to finish play then call method        
+                Invoke("Lose", audioSource.clip.length); //wait clip to finish play then call method        
             }
         }
 
