@@ -8,12 +8,12 @@
     {
         private Rigidbody body;
 
-        private BoxCollider collider;
+        private BoxCollider _collider;
         // Use this for initialization
         void Start()
         {
             body = GetComponent<Rigidbody>();
-            collider = GetComponent<BoxCollider>();
+            _collider = GetComponent<BoxCollider>();
         }
 
         // Update is called once per frame
@@ -33,7 +33,7 @@
                         body.constraints = RigidbodyConstraints.None;
                         body.AddForce(0,3,3,ForceMode.Impulse);
                         body.AddTorque(0, 3, 3, ForceMode.Impulse);
-                        collider.enabled = false;
+                        _collider.enabled = false;
                         Invoke("DestroyMe", 2);
                     }
                 }

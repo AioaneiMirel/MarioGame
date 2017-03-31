@@ -2,7 +2,7 @@
 {
     using UnityEngine;
 
-    public class LevelEnd : MonoBehaviour
+    public class LevelEndDie : MonoBehaviour
     {
         public LevelManager LevelManager;
 

@@ -34,12 +34,12 @@
                 if (IsOnGround())
                 {
                     rigidBody.AddForce(jump * JumpForce, ForceMode.Impulse);
-                    PlayClip("Jump");
+                    PlayClip("Jump_Low");
                 }
                 if (onJumpPlatform)
                 {
                     rigidBody.AddForce(jump * JumpForce * 0.5f, ForceMode.Impulse);
-                    PlayClip("Jump");
+                    PlayClip("Jump_High");
                     onJumpPlatform = false;
                 }
             }
@@ -68,21 +68,16 @@
 
         void OnCollisionEnter(Collision col)
         {
-            if (col.gameObject.tag == "Coin")
-            {
-                PlayClip("Coin");
-            }
-
             if (HeadHit())
             {
                 if (col.gameObject.tag == "WallBrickStandard")
                 {
-                    PlayClip("Click");
+                    PlayClip("Brick_Hit");
                 }
                 if (col.gameObject.tag == "WallBrickDestroyed")
                 {
                     col.gameObject.GetComponent<Rigidbody>().useGravity = true;
-                    PlayClip("Click"); //TO DO Find another sound to play when a brick is destroyed
+                    PlayClip("Brick_Hit"); //TO DO Find another sound to play when a brick is destroyed
                 }
             }
 
@@ -92,29 +87,26 @@
             }
         }
 
-        void OnCollisionExit(Collision collisionInfo)
+        void OnCollisionExit(Collision col)
         {
             onJumpPlatform = false;
         }
-        
+
         void PlayClip(string clipName)
         {
             switch (clipName)
             {
-                case "Kill":
+                case "Jump_Low":
                     Play(0);
                     break;
-                case "Jump":
+                case "Die":
                     Play(1);
                     break;
-                case "Die":
+                case "Brick_Hit":
                     Play(2);
                     break;
-                case "Coin":
+                case "Jump_High":
                     Play(3);
-                    break;
-                case "Click":
-                    Play(4);
                     break;
             }
         }

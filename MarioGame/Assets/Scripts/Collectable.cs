@@ -2,8 +2,10 @@
 {
     using UnityEngine;
 
-    public class GatherCoins : MonoBehaviour
+    public class Collectable : MonoBehaviour
     {
+        public int Value = 100;
+
         // Use this for initialization
         void Start()
         {
@@ -13,12 +15,12 @@
         void Update()
         {
         }
-
+        
         void OnCollisionEnter(Collision col)
         {
-            if (col.gameObject.name == "Player")
+            if (col.gameObject.tag == "Player")
             {
-                Destroy(gameObject);
+                ScoreManager.Instance.Collect(Value, gameObject);
             }
         }
     }
