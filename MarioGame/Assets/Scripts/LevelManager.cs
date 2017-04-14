@@ -5,9 +5,10 @@
 
     public class LevelManager : MonoBehaviour
     {
-        public void LoadLevel(string level)
+        public string NextLevelName;
+        public void LoadLevel(string NextLevelName)
         {
-            SceneManager.LoadScene(level);
+            SceneManager.LoadScene(NextLevelName);
         }
 
         public void Exit()

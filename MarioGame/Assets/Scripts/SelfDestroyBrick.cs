@@ -1,7 +1,5 @@
 ﻿namespace Assets.Scripts
 {
-    using System;
-
     using UnityEngine;
 
     public class SelfDestroyBrick : MonoBehaviour
@@ -9,6 +7,7 @@
         private Rigidbody body;
 
         private BoxCollider _collider;
+
         // Use this for initialization
         void Start()
         {
@@ -30,8 +29,9 @@
                     Debug.DrawRay(contact.point, contact.normal * 10, Color.white);
                     if (contact.normal.y == 1)
                     {
+                        gameObject.GetComponent<Rigidbody>().useGravity = true;
                         body.constraints = RigidbodyConstraints.None;
-                        body.AddForce(0,3,3,ForceMode.Impulse);
+                        body.AddForce(0, 3, 3, ForceMode.Impulse);
                         body.AddTorque(0, 3, 3, ForceMode.Impulse);
                         _collider.enabled = false;
                         Invoke("DestroyMe", 2);
