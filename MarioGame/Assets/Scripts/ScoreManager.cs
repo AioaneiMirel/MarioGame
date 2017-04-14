@@ -9,14 +9,33 @@
 
         public GameObject ScoreText;
 
+        public GameObject CoinsText;
+
+        public GameObject LifeText;
+
         private int score;
+        private int coins;
+        private int lifes;
 
         private Text scoreText;
+        private Text coinText;
+        private Text lifesText;
 
         public void Collect(int passedValue, GameObject passedObject)
         {
             score = score + passedValue;
-            scoreText.text = "Score " + score;
+            scoreText.text = "Score :" + score;
+
+            if (passedObject.tag=="Coin")
+            {
+                coins += 1;
+                coinText.text = "Coins: " + coins;
+            }
+            if (coins%10==0 || passedObject.tag=="ExtraLife")
+            {
+                lifes += 1;
+                lifesText.text = "Life: " + lifes;
+            }
         }
 
         void Awake()
@@ -34,7 +53,18 @@
             }
 
             scoreText = ScoreText.GetComponent<Text>();
+            coinText = CoinsText.GetComponent<Text>();
+            lifesText = LifeText.GetComponent<Text>();
+
             scoreText.text = "Score: " + score;
+            coinText.text = "Coins: " + coins;
+            lifesText.text = "Life: " + lifes;
+        }
+
+
+        public void Start()
+        {
+            DontDestroyOnLoad(gameObject);
         }
     }
 }

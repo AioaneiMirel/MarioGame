@@ -12,7 +12,7 @@
 
         Rigidbody rigidBody;
 
-        bool onJumpPlatform = false;
+        bool onJumpPlatform ;
 
         void Start()
         {
@@ -52,6 +52,8 @@
 
         bool HeadHit()
         {
+           
+            Debug.DrawRay(transform.position, new Vector3(0, 2, 0), Color.green);
             return Physics.Raycast(transform.position, Vector3.up, GetComponent<Collider>().bounds.extents.y + 0.1f);
         }
 
@@ -68,7 +70,7 @@
 
         void OnCollisionEnter(Collision col)
         {
-            if (HeadHit())
+            if (HeadHit()&&!IsOnGround())
             {
                 if (col.gameObject.tag == "WallBrickStandard")
                 {
@@ -76,7 +78,6 @@
                 }
                 if (col.gameObject.tag == "WallBrickDestroyed")
                 {
-                    col.gameObject.GetComponent<Rigidbody>().useGravity = true;
                     PlayClip("Brick_Hit"); //TO DO Find another sound to play when a brick is destroyed
                 }
             }

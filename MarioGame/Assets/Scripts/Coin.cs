@@ -18,7 +18,7 @@
         // Update is called once per frame
         void Update()
         {
-            transform.Rotate(0, 5 * SpinSpeed, 0, Space.World);
+            transform.Rotate(0, 5 * SpinSpeed*Time.deltaTime, 0, Space.World);
         }
 
         void OnCollisionEnter(Collision col)
