@@ -30,6 +30,16 @@
             }
         }
 
+        void OnCollisionEnter(Collision col)
+        {
+            if (col.gameObject.tag == "Player")
+            {
+                audioSource.Play();
+
+                Invoke("ResetLevel", audioSource.clip.length); //wait clip to finish play then call method        
+            }
+        }
+
         void ResetLevel()
         {
             LevelManager.LoadLevel(SceneManager.GetActiveScene().name);
