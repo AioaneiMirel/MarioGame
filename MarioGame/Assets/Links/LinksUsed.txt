@@ -1,4 +1,5 @@
-﻿https://www.youtube.com/watch?v=AfwmRYQRsbg&feature=youtu.be	-platforms
-https://youtu.be/hoY1eWqDo5s									-score
-https://www.youtube.com/watch?v=FD9HZB0Jn1w						-shoot
-https://www.youtube.com/watch?v=VYOgWJFiifo						-portal
+﻿https://www.youtube.com/watch?v=AfwmRYQRsbg&feature=youtu.be	-Platforms
+https://youtu.be/hoY1eWqDo5s									-Score
+https://www.youtube.com/watch?v=FD9HZB0Jn1w						-Shoot
+https://www.youtube.com/watch?v=VYOgWJFiifo						-Portal
+https://www.youtube.com/watch?v=5zNDRMJ3_AA						-EnemyHealthBar

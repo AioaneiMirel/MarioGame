@@ -1,6 +1,9 @@
 ﻿namespace Assets.Scripts
 {
+    using System;
+
     using UnityEngine;
+    using UnityEngine.UI;
 
     public class Player : MonoBehaviour
     {
@@ -12,7 +15,9 @@
 
         Rigidbody rigidBody;
 
-        bool onJumpPlatform ;
+        bool onJumpPlatform;
+
+        private PlayerShoot ps;
 
         void Start()
         {
@@ -52,7 +57,6 @@
 
         bool HeadHit()
         {
-           
             Debug.DrawRay(transform.position, new Vector3(0, 2, 0), Color.green);
             return Physics.Raycast(transform.position, Vector3.up, GetComponent<Collider>().bounds.extents.y + 0.1f);
         }
@@ -70,7 +74,7 @@
 
         void OnCollisionEnter(Collision col)
         {
-            if (HeadHit()&&!IsOnGround())
+            if (HeadHit() && !IsOnGround())
             {
                 if (col.gameObject.tag == "WallBrickStandard")
                 {
@@ -86,11 +90,48 @@
             {
                 onJumpPlatform = true;
             }
+
+            if (col.gameObject.tag == "Bullet" || col.gameObject.tag == "Fire_Ball" || col.gameObject.tag == "Spear_Head")
+            {
+                var scoreManager = (ScoreManager)FindObjectOfType(typeof(ScoreManager));
+                var uiText = scoreManager.LifeText.GetComponent<Text>();
+                var life = uiText.text;
+                var lifesLeft = life.Split(':')[1];
+                if (Convert.ToInt32(lifesLeft) < 0)
+                {
+                    var levelManager = (LevelManager)FindObjectOfType(typeof(LevelManager));
+                    levelManager.LoadLevel("Lose");
+                }
+                Debug.Log(lifesLeft);
+            }
+
+            if (col.gameObject.tag=="Weapon")
+            {
+                ps = gameObject.GetComponent<PlayerShoot>();
+                ps.enabled = true;
+            }
         }
 
         void OnCollisionExit(Collision col)
         {
             onJumpPlatform = false;
+        }
+
+        void OnTriggerEnter(Collider col)
+        {
+            if (col.gameObject.tag == "Die")
+            {
+                var scoreManager = (ScoreManager)FindObjectOfType(typeof(ScoreManager));
+                var uiText = scoreManager.LifeText.GetComponent<Text>();
+                var life = uiText.text;
+                var lifesLeft = life.Split(':')[1];
+                if (Convert.ToInt32(lifesLeft)<0)
+                {
+                    var levelManager = (LevelManager)FindObjectOfType(typeof(LevelManager));
+                    levelManager.LoadLevel("Lose");
+                }
+                Debug.Log(lifesLeft);
+            }
         }
 
         void PlayClip(string clipName)

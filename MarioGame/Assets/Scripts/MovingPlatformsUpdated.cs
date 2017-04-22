@@ -4,7 +4,7 @@
 
     public class MovingPlatformsUpdated : MonoBehaviour
     {
-        public Transform MovingTransform;
+        public Transform MoveThisObject;
 
         public Transform[] Positions;
 
@@ -21,18 +21,18 @@
         // Use this for initialization
         void Start()
         {
-            ChangeTarget2();
+            ChangeTarget();
         }
 
         // Update is called once per frame
         void FixedUpdate() //for consistent interval independent of pc speed
         {
-            MovingTransform.position = Vector3.LerpUnclamped(MovingTransform.position, NextPosition, Smooth * Time.deltaTime);
+            MoveThisObject.position = Vector3.LerpUnclamped(MoveThisObject.position, NextPosition, Smooth * Time.deltaTime);
         }
         
-        void ChangeTarget2()
+        void ChangeTarget()
         {
-            Debug.Log(CurrentPosition);
+            //Debug.Log(CurrentPosition);
             if (CurrentPosition == 0) //at start game
             {
                 reverse = false;
@@ -61,7 +61,7 @@
                     reverse = true;
                 }
             }
-            Invoke("ChangeTarget2", ResetTime);
+            Invoke("ChangeTarget", ResetTime);
         }
     }
 }

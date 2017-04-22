@@ -77,12 +77,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\CameraFacingBillboard.cs" />
     <Compile Include="Assets\Scripts\CameraFollow.cs" />
     <Compile Include="Assets\Scripts\Coin.cs" />
-    <Compile Include="Assets\Scripts\Collectable.cs" />
+    <Compile Include="Assets\Scripts\CollectablesAndKillers.cs" />
     <Compile Include="Assets\Scripts\DestroyBullet.cs" />
+    <Compile Include="Assets\Scripts\EnemyHealth.cs" />
+    <Compile Include="Assets\Scripts\EnemyMovement.cs" />
     <Compile Include="Assets\Scripts\ExtraLife.cs" />
     <Compile Include="Assets\Scripts\FallingPlatform.cs" />
+    <Compile Include="Assets\Scripts\FireBall.cs" />
     <Compile Include="Assets\Scripts\FireBullet.cs" />
     <Compile Include="Assets\Scripts\HoldCharacter.cs" />
     <Compile Include="Assets\Scripts\LevelEndReset.cs" />
@@ -93,6 +97,7 @@
     <Compile Include="Assets\Scripts\PlayerShoot.cs" />
     <Compile Include="Assets\Scripts\ScoreManager.cs" />
     <Compile Include="Assets\Scripts\SelfDestroyBrick.cs" />
+    <Compile Include="Assets\Scripts\SpearHit.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Links\LinksUsed.txt" />

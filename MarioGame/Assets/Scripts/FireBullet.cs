@@ -13,7 +13,9 @@ public class FireBullet : MonoBehaviour
 
     public int RateOfFire;
 
-    public bool ReverseDirection;
+    public bool ReverseShootDirectionOnX;
+
+    public bool ShootDirectionOnZ;
 
     private bool canShoot;
 
@@ -44,13 +46,21 @@ public class FireBullet : MonoBehaviour
             Temporary_RigidBody = Temporary_Bullet_Handler.GetComponent<Rigidbody>();
 
             //Tell the bullet to be "pushed" forward by an amount set by Bullet_Forward_Force. 
-            if (ReverseDirection)
+
+            if (ShootDirectionOnZ)
             {
-                Temporary_RigidBody.AddForce(new Vector3(1, 0, 0) * Bullet_Forward_Force);
+                Temporary_RigidBody.AddForce(new Vector3(0, 0, -1) * Bullet_Forward_Force);
             }
             else
             {
-                Temporary_RigidBody.AddForce(new Vector3(-1, 0, 0) * Bullet_Forward_Force);
+                if (ReverseShootDirectionOnX)
+                {
+                    Temporary_RigidBody.AddForce(new Vector3(1, 0, 0) * Bullet_Forward_Force);
+                }
+                else
+                {
+                    Temporary_RigidBody.AddForce(new Vector3(-1, 0, 0) * Bullet_Forward_Force);
+                }
             }
 
             //Basic Clean Up, set the Bullets to self destruct after 10 Seconds, I am being VERY generous here, normally 3 seconds is plenty.

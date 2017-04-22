@@ -20,10 +20,10 @@
 
         void OnCollisionEnter(Collision col)
         {
-            //if (col.gameObject.tag == "Player")
-            //{
-            //    LevelManager.LoadLevel(SceneManager.GetActiveScene().name);
-            //}
+            if (col.gameObject.tag == "Player")
+            {
+                LevelManager.LoadLevel(SceneManager.GetActiveScene().name);
+            }
             Destroy(gameObject);
         }
 
