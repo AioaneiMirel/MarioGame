@@ -17,7 +17,7 @@
 
         private int coins;
 
-        private int lifes;
+        public int lifes;
 
         private Text scoreText;
 
