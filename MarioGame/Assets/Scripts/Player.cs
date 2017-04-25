@@ -94,7 +94,7 @@
             if (col.gameObject.tag == "Bullet" || col.gameObject.tag == "Fire_Ball" || col.gameObject.tag == "Spear_Head")
             {
                 var scoreManager = (ScoreManager)FindObjectOfType(typeof(ScoreManager));
-                var uiText = scoreManager.LifeText.GetComponent<Text>();
+                var uiText = scoreManager.UiDetails.LifeText.GetComponent<Text>();
                 var life = uiText.text;
                 var lifesLeft = life.Split(':')[1];
                 if (Convert.ToInt32(lifesLeft) < 0)
@@ -122,7 +122,7 @@
             if (col.gameObject.tag == "Die")
             {
                 var scoreManager = (ScoreManager)FindObjectOfType(typeof(ScoreManager));
-                var uiText = scoreManager.LifeText.GetComponent<Text>();
+                var uiText = scoreManager.UiDetails.LifeText.GetComponent<Text>();
                 var life = uiText.text;
                 var lifesLeft = life.Split(':')[1];
                 if (Convert.ToInt32(lifesLeft)<0)
