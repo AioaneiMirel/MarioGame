@@ -14,7 +14,7 @@
                 {
                     ScoreManager.Instance.CollectOrLoseLife(1000, gameObject);
                 }
-                if (gameObject.tag=="Coin")
+                if (gameObject.tag == "Coin")
                 {
                     ScoreManager.Instance.CollectOrLoseLife(Value, gameObject);
                 }
@@ -24,8 +24,13 @@
                     ScoreManager.Instance.CollectOrLoseLife(Value, gameObject);
                 }
 
-                if (gameObject.tag == "Bullet" || gameObject.tag == "Fire_Ball"
-                    || gameObject.tag == "Spear_Head" || gameObject.tag == "Enemy")
+                if (gameObject.tag=="Key")
+                {
+                    ScoreManager.Instance.CollectOrLoseLife(Value, gameObject);
+                }
+
+                if (gameObject.tag == "Bullet" || gameObject.tag == "Fire_Ball" || gameObject.tag == "Spear_Head"
+                    || gameObject.tag == "Enemy")
                 {
                     ScoreManager.Instance.CollectOrLoseLife(0, gameObject);
                 }
@@ -36,7 +41,7 @@
         {
             if (col.gameObject.tag == "Player")
             {
-                if (gameObject.tag == "Die")
+                if (gameObject.tag == "Die" || gameObject.tag == "Portal")
                 {
                     ScoreManager.Instance.CollectOrLoseLife(0, gameObject);
                 }
