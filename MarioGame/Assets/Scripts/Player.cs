@@ -22,13 +22,24 @@
         void Start()
         {
             rigidBody = GetComponent<Rigidbody>();
+            PauseMenu.HideInGameMenu();
         }
 
         void Update()
         {
+            GameMenu();
             Move();
             Jump();
             //Debug.DrawRay(transform.position, new Vector3(0, -2, 0), Color.green);//Debug porpuses 
+        }
+
+        private void GameMenu()
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                PauseMenu.ShowInGameMenu();
+                Time.timeScale = 0.0f;
+            }
         }
 
         void Jump()
@@ -91,10 +102,11 @@
                 onJumpPlatform = true;
             }
 
-            if (col.gameObject.tag == "Bullet" || col.gameObject.tag == "Fire_Ball" || col.gameObject.tag == "Spear_Head")
+            if (col.gameObject.tag == "Bullet" || col.gameObject.tag == "Fire_Ball"
+                || col.gameObject.tag == "Spear_Head")
             {
                 var scoreManager = (ScoreManager)FindObjectOfType(typeof(ScoreManager));
-                var uiText = scoreManager.UiDetails.LifeText.GetComponent<Text>();
+                var uiText = scoreManager.LifeText.GetComponent<Text>();
                 var life = uiText.text;
                 var lifesLeft = life.Split(':')[1];
                 if (Convert.ToInt32(lifesLeft) < 0)
@@ -105,7 +117,7 @@
                 Debug.Log(lifesLeft);
             }
 
-            if (col.gameObject.tag=="Weapon")
+            if (col.gameObject.tag == "Weapon")
             {
                 ps = gameObject.GetComponent<PlayerShoot>();
                 ps.enabled = true;
@@ -122,10 +134,10 @@
             if (col.gameObject.tag == "Die")
             {
                 var scoreManager = (ScoreManager)FindObjectOfType(typeof(ScoreManager));
-                var uiText = scoreManager.UiDetails.LifeText.GetComponent<Text>();
+                var uiText = scoreManager.LifeText.GetComponent<Text>();
                 var life = uiText.text;
                 var lifesLeft = life.Split(':')[1];
-                if (Convert.ToInt32(lifesLeft)<0)
+                if (Convert.ToInt32(lifesLeft) < 0)
                 {
                     var levelManager = (LevelManager)FindObjectOfType(typeof(LevelManager));
                     levelManager.LoadLevel("Lose");

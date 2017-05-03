@@ -40,6 +40,40 @@
         private Text levelText;
 
         private Text keysText;
+        
+        public void Start()
+        {
+            DontDestroyOnLoad(gameObject);
+        }
+
+        void Awake()
+        {
+            lifes = 3;
+            level = 1;
+            keys = 3;
+            if (Instance == null)
+            {
+                Instance = this;
+            }
+            else
+            {
+                if (Instance != null)
+                {
+                    Destroy(gameObject);
+                }
+            }
+
+            scoreText = ScoreText.GetComponent<Text>();
+            coinText = CoinsText.GetComponent<Text>();
+            lifesText = LifeText.GetComponent<Text>();
+            levelText = LevelText.GetComponent<Text>();
+            keysText = KeysText.GetComponent<Text>();
+
+            scoreText.text = "Score: " + score;
+            coinText.text = "Coins: " + coins;
+            lifesText.text = "Life: " + lifes;
+            levelText.text = "Level: " + level;
+        }
 
         public void CollectOrLoseLife(int passedValue, GameObject passedObject)
         {
@@ -83,44 +117,9 @@
 
             if (passedObject.tag == "Key")
             {
-                
                 keys--;
                 keysText.text = "Keys Left: " + keys;
             }
-        }
-
-        public void Start()
-        {
-            DontDestroyOnLoad(gameObject);
-        }
-
-        void Awake()
-        {
-            lifes = 3;
-            level = 1;
-            keys = 3;
-            if (Instance == null)
-            {
-                Instance = this;
-            }
-            else
-            {
-                if (Instance != null)
-                {
-                    Destroy(gameObject);
-                }
-            }
-
-            scoreText = ScoreText.GetComponent<Text>();
-            coinText = CoinsText.GetComponent<Text>();
-            lifesText = LifeText.GetComponent<Text>();
-            levelText = LevelText.GetComponent<Text>();
-            keysText = KeysText.GetComponent<Text>();
-
-            scoreText.text = "Score: " + score;
-            coinText.text = "Coins: " + coins;
-            lifesText.text = "Life: " + lifes;
-            levelText.text = "Level: " + level;
         }
     }
 }
