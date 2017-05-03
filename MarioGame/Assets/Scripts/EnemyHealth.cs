@@ -1,6 +1,7 @@
 ﻿namespace Assets.Scripts
 {
     using UnityEngine;
+    using UnityEngine.SceneManagement;
     using UnityEngine.UI;
 
     public class EnemyHealth : MonoBehaviour
@@ -15,10 +16,25 @@
         {
             Health -= damage;
             healthBar.fillAmount = (float)Health / (float)maxHealth;
-            if (Health == 0)
+            if (Health <= 0)
             {
+                //for portal destroyed
+                if (gameObject.tag == "Portal")
+                {
+                    SceneManager.LoadScene("Lose");
+                }
+                if (gameObject.tag=="Boss")
+                {
+                    EnableStairs();
+                }
                 DestroyObject(gameObject);
             }
+        }
+
+        public void EnableStairs()
+        {
+            var stairs = (EnableStairs)FindObjectOfType(typeof(EnableStairs));
+            stairs.StartMoveing = true;
         }
 
         // Use this for initialization
@@ -41,6 +57,13 @@
             if (col.gameObject.tag == "Bullet")
             {
                 Hit(10);
+            }
+
+            //for BOSS traps
+
+            if (col.gameObject.tag == "Trap")
+            {
+                Hit(250);
             }
         }
     }

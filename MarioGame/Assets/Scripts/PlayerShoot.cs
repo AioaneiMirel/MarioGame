@@ -62,28 +62,7 @@
 
                         RevereDirectionToFire(temporaryBulletHandler, false);
                     }
-                    //stationary 
-                    //else
-                    //{
-                    //    if (faceDirection == "Right")
-                    //    {
-                    //        temporaryBulletHandler = Instantiate(
-                    //                                     Bullet,
-                    //                                     BulletEmitter.transform.position,
-                    //                                     BulletEmitter.transform.rotation) as GameObject;
 
-                    //        RevereDirectionToFire(temporaryBulletHandler, true);
-                    //    }
-                    //    if (faceDirection == "Left")
-                    //    {
-                    //        temporaryBulletHandler = Instantiate(
-                    //                                     Bullet,
-                    //                                     BulletEmitter.transform.position - new Vector3(3, 0, 0),
-                    //                                     BulletEmitter.transform.rotation) as GameObject;
-
-                    //        RevereDirectionToFire(temporaryBulletHandler, false);
-                    //    }
-                    //}
                     canShootAgain = false;
                     Invoke("CanShootAgain", 0.2f * FireRate);
                 }
